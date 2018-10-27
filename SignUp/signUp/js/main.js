@@ -20,6 +20,10 @@
     /*==================================================================
     [ Validate ]*/
     var input = $('.validate-input .input100');
+    var email;
+    var user;
+    var password;
+
 
 
     $('.validate-form').on('submit',function(){
@@ -30,9 +34,17 @@
                 showValidate(input[i]);
                 check=false;
             }
+
         }
 
+
         return check;
+
+        if(check == true){
+          email = input[0];
+          user = input[1];
+          password = input[2];
+        }
     });
 
 
