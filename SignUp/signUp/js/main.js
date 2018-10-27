@@ -2,7 +2,6 @@
 (function ($) {
     "use strict";
 
-
     /*==================================================================
     [ Focus input ]*/
     $('.input100').each(function(){
@@ -21,9 +20,11 @@
     [ Validate ]*/
     var input = $('.validate-input .input100');
 
+
     $('.validate-form').on('submit',function(){
         var check = true;
 
+        var originalPW = '';
         for(var i=0; i<input.length; i++) {
             if(validate(input[i]) == false){
                 showValidate(input[i]);
@@ -40,6 +41,7 @@
            hideValidate(this);
         });
     });
+
 
     function validate (input) {
         //validate email
@@ -65,8 +67,26 @@
             }
         }
         //validate password
-        if($(input).attr('type') == 'password' || $(input).attr('name') == 'password') {
-            if($(input).val().trim().match(/^[a-zA-Z0-9_\-\.]+$/) == null) {
+        var originalPW = '';
+        if($(input).attr('name') == 'password') {
+
+            if($(input).val().trim().match(/^[a-zA-Z0-9_\-\.\!]+$/) == null) {
+                return false;
+            }
+            else{
+              originalPW = $(input).val().trim();
+            }
+
+        }
+        else {
+            if($(input).val().trim() == ''){
+                return false;
+            }
+        }
+        //validate password confirmation
+
+        if($(input).attr('name') == 'confirm') {
+            if($(input).val().trim() != originalPW) {
                 return false;
             }
         }
