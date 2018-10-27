@@ -1,6 +1,8 @@
 (function ($) {
     "use strict";
 
+    var users = new Object;
+
     /*==================================================================
     [ Focus input ]*/
     $('.input100').each(function(){
@@ -79,6 +81,16 @@
             }
         }
 
+    
+
+    }
+
+    function storeInput(){
+        var x = document.getElementById("userInfoForm");
+        var username = document.forms[0].username.value;
+        var password = document.forms[0].pass.value;
+
+        users[username] = password;
     }
 
     function showValidate(input) {
